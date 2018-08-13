@@ -16,7 +16,7 @@ public class ItemHolderOne extend DataHolder{
 
     @Override
     public GenericViewHolder onCreateView(Context context) {
-        View item = LayoutInflater.from(context).inflate(R.layout.item_study_head,null);
+        View item = LayoutInflater.from(context).inflate(R.layout.item_one,null);
         SimpleDraweeView ivIcon = .....;
         TextView tvName = .....;
         GenericViewHolder holder = new GenericViewHolder(item,ivIcon,tvName);
