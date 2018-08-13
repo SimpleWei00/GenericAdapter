@@ -50,7 +50,7 @@ public class TestActivity extends  Activity{
         RecyclerView rv = ......;
         GenericAdapter adapter = new GenericAdapter(context);
         adapter.addDataHolder(new ItemHolderOne("哈哈",0));
-        adapter.addDataHolder(new ItemHolderTwo(object,0));
+        adapter.addDataHolder(new ItemHolderTwo(object,1));
         rv.setAdapter(adapter);
     }
   }
