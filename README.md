@@ -3,8 +3,10 @@ GenericAdapter
 针对RecyclerView而写的一个通用性Adapter，目的就是为了代码简洁和直观
 
 Usage
+
 第一步：
-  创建不同的类型布局
+  
+创建不同的类型布局
 public class ItemHolderOne extend DataHolder{
 
   public TextItemHolder(Object data, int type) {
@@ -33,10 +35,12 @@ public class ItemHolderTwo extend DataHolder{
     
     ........
 }
+
 第二步：
-  实例化GenericAdapter
+
+实例化GenericAdapter
   
-  public class TestActivity extends  Activity{
+public class TestActivity extends  Activity{
   
       @Override 
     protected void onCreate(Bundle savedInstanceState) {
