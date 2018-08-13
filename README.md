@@ -7,6 +7,7 @@ Usage
 第一步：
   
 创建不同的类型布局
+
 public class ItemHolderOne extend DataHolder{
 
   public TextItemHolder(Object data, int type) {
