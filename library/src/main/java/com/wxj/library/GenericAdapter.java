@@ -5,16 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GenericAdapter extends RecyclerView.Adapter<GenericViewHolder> {
 
     private Context mContext = null;
     private List<DataHolder> mHolders = null;
+    private Map<Integer,DataHolder> mMapType = null;
 
     public GenericAdapter(Context context){
         mContext = context;
         mHolders = new ArrayList<>();
+        mMapType = new HashMap<>();
     }
 
     public Context getContext(){
@@ -23,18 +27,26 @@ public class GenericAdapter extends RecyclerView.Adapter<GenericViewHolder> {
 
     public void addDataHolder(DataHolder holder)
     {
+        if(!mMapType.containsKey(holder.getType()))
+            mMapType.put(holder.getType(),holder);
         mHolders.add(holder);
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     public void addDataHolder(int location, DataHolder holder)
     {
+        if(!mMapType.containsKey(holder.getType()))
+            mMapType.put(holder.getType(),holder);
         mHolders.add(location, holder);
         notifyDataSetChanged();
     }
 
     public void addDataHolders(List<DataHolder> holders)
     {
+        for(DataHolder holder : holders){
+            if(!mMapType.containsKey(holder.getType()))
+                mMapType.put(holder.getType(),holder);
+        }
         mHolders.addAll(holders);
         notifyDataSetChanged();
     }
@@ -77,26 +89,9 @@ public class GenericAdapter extends RecyclerView.Adapter<GenericViewHolder> {
         return mHolders;
     }
 
-    /**
-     * 根据布局类型查DataHolder
-     * @param viewType
-     * @return
-     */
-    public DataHolder queryDataHolder(int viewType)
-    {
-        int size = mHolders.size();
-        for(int i = 0 ; i < size;i++){
-            DataHolder holder = mHolders.get(i);
-            if(viewType == holder.getType()){
-                return holder;
-            }
-        }
-        return null;
-    }
-
     @Override
     public GenericViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        DataHolder holder = queryDataHolder(viewType);
+        DataHolder holder = mMapType.get(viewType);
         return holder.onCreateView(mContext);
     }
 
